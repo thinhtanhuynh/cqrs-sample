@@ -8,7 +8,7 @@ using CQRS.Sample.Exceptions;
 namespace CQRS.Sample.Controllers;
 
 [ApiController]
-[Route("api/[controller]")]
+[Route("api/orders")]
 public class OrdersController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -19,7 +19,7 @@ public class OrdersController : ControllerBase
     }
 
     [HttpGet("{orderId}")]
-    [ProducesResponseType(typeof(OrderDto), 200)] // Add response type
+    [ProducesResponseType(typeof(OrderDto), 200)]
     [ProducesResponseType(404)]
     public async Task<IActionResult> GetOrderById(Guid orderId)
     {
@@ -40,7 +40,7 @@ public class OrdersController : ControllerBase
     }
 
     [HttpPost]
-    [ProducesResponseType(typeof(Guid), 201)] // Return CreatedAtAction
+    [ProducesResponseType(typeof(Guid), 201)]
     [ProducesResponseType(400)]
     public async Task<IActionResult> CreateOrder(CreateOrderCommand command)
     {
@@ -49,7 +49,7 @@ public class OrdersController : ControllerBase
             var orderId = await _mediator.Send(command);
             return CreatedAtAction(nameof(GetOrderById), new { orderId }, new { OrderId = orderId });
         }
-        catch (ArgumentException ex) // Catch validation errors
+        catch (ArgumentException ex)
         {
             return BadRequest(ex.Message);
         }

@@ -6,22 +6,22 @@ namespace CQRS.Sample.Handlers.CommandHandlers;
 
 public class UpdateOrderStatusCommandHandler : IRequestHandler<UpdateOrderStatusCommand>
 {
-    private readonly OrderDbContext _context;
+    private readonly OrderWriteDbContext _writeContext;
 
-    public UpdateOrderStatusCommandHandler(OrderDbContext context)
+    public UpdateOrderStatusCommandHandler(OrderWriteDbContext writeContext)
     {
-        _context = context;
+        _writeContext = writeContext;
     }
 
     public async Task Handle(UpdateOrderStatusCommand command, CancellationToken cancellationToken)
     {
-        var order = await _context.Orders.FindAsync(command.OrderId);
+        var order = await _writeContext.Orders.FindAsync(command.OrderId);
         if (order is null)
         {
             throw new EntityNotFoundException($"Order with id {command.OrderId} not found"); // Custom Exception
         }
 
         order.Status = command.Status;
-        await _context.SaveChangesAsync(cancellationToken);
+        await _writeContext.SaveChangesAsync(cancellationToken);
     }
 }

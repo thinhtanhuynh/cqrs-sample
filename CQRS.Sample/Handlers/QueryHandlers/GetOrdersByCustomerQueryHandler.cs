@@ -8,16 +8,16 @@ namespace CQRS.Sample.Handlers.QueryHandlers;
 
 public class GetOrdersByCustomerQueryHandler : IRequestHandler<GetOrdersByCustomerQuery, IEnumerable<OrderDto>>
 {
-    private readonly OrderDbContext _context;
+    private readonly OrderReadDbContext _readContext;
 
-    public GetOrdersByCustomerQueryHandler(OrderDbContext context)
+    public GetOrdersByCustomerQueryHandler(OrderReadDbContext readContext)
     {
-        _context = context;
+        _readContext = readContext;
     }
 
     public async Task<IEnumerable<OrderDto>> Handle(GetOrdersByCustomerQuery request, CancellationToken cancellationToken)
     {
-        var orders = await _context.Orders
+        var orders = await _readContext.Orders
             .Include(o => o.Items)
             .Where(o => o.CustomerName == request.CustomerName)
             .ToListAsync(cancellationToken);
@@ -29,6 +29,7 @@ public class GetOrdersByCustomerQueryHandler : IRequestHandler<GetOrdersByCustom
             Status: order.Status,
             Total: order.Total,
             Items: order.Items.Select(item => new OrderItemDto(
+                OrderId: order.Id,
                 ProductId: item.ProductId,
                 ProductName: item.ProductName,
                 Quantity: item.Quantity,

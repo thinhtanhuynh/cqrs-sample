@@ -8,16 +8,16 @@ namespace CQRS.Sample.Handlers.QueryHandlers;
 
 public class GetOrderByIdQueryHandler : IRequestHandler<GetOrderByIdQuery, OrderDto?>
 {
-    private readonly OrderDbContext _context;
+    private readonly OrderReadDbContext _readContext;
 
-    public GetOrderByIdQueryHandler(OrderDbContext context)
+    public GetOrderByIdQueryHandler(OrderReadDbContext readContext)
     {
-        _context = context;
+        _readContext = readContext;
     }
 
     public async Task<OrderDto?> Handle(GetOrderByIdQuery request, CancellationToken cancellationToken)
     {
-        var order = await _context.Orders
+        var order = await _readContext.Orders
             .Include(o => o.Items)
             .FirstOrDefaultAsync(o => o.Id == request.OrderId, cancellationToken);
 
@@ -33,6 +33,7 @@ public class GetOrderByIdQueryHandler : IRequestHandler<GetOrderByIdQuery, Order
             Status: order.Status,
             Total: order.Total,
             Items: order.Items.Select(item => new OrderItemDto(
+                OrderId: order.Id,
                 ProductId: item.ProductId,
                 ProductName: item.ProductName,
                 Quantity: item.Quantity,

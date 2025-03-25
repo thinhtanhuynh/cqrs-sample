@@ -2,10 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using CQRS.Sample.Models;
 
 namespace CQRS.Sample.Data;
-
-public class OrderDbContext : DbContext
+public class OrderWriteDbContext : DbContext
 {
-    public OrderDbContext(DbContextOptions<OrderDbContext> options) : base(options) { }
+    public OrderWriteDbContext(DbContextOptions<OrderWriteDbContext> options) : base(options) { }
 
     public DbSet<Order> Orders { get; set; }
     public DbSet<OrderItem> OrderItems { get; set; }

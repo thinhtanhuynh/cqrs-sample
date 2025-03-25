@@ -15,8 +15,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
 // Add DbContext
-builder.Services.AddDbContext<OrderDbContext>(options =>
-   options.UseMySQL(builder.Configuration.GetConnectionString("OrderDb")!));
+builder.Services.AddDbContext<OrderWriteDbContext>(options =>
+   options.UseMySQL(builder.Configuration.GetConnectionString("OrderDbWrite")!));
+
+builder.Services.AddDbContext<OrderReadDbContext>(options =>
+   options.UseMySQL(builder.Configuration.GetConnectionString("OrderDbRead")!));
 
 var app = builder.Build();
 
