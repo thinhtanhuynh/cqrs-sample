@@ -64,13 +64,13 @@ The project is organized as follows:
 1. Clone the repository:
 
 ```shell
-git clone <repository_url>
+git clone https://github.com/thinhtanhuynh/cqrs-sample.git
 ```
 
 2. Navigate to the project directory:
 
 ```shell
-cd <project_directory>
+cd cqrs-sample
 ```
 
 3. Update the `appsettings.json` file with your MySQL connection strings. You will need two separate connection strings: one for the write database and one for the read database. Ensure that the read database is populated with data (either through replication, ETL, or other means).
@@ -78,8 +78,8 @@ cd <project_directory>
 ```json
 {
   "ConnectionStrings": {
-    "OrderWriteDb": "Server=<server-ip>;Port=<server-port>;Database=<write-database>;User=<user>;Password=<password>",
-    "OrderReadDb": "Server=<server-ip>;Port=<server-port>;Database=<write-database>;User=<user>;Password=<password>"
+    "OrderWriteDb": "Server=<server-address>;Port=<server-port>;Database=<write-database>;Uid=<user>;Pwd=<password>",
+    "OrderReadDb": "Server=<server-address>;Port=<server-port>;Database=<read-database>;Uid=<user>;Pwd=<password>"
   }
 }
 ```
@@ -136,7 +136,7 @@ Request body:
   "items": [
     {
       "productId": "string",
-      "productName": "string",  // Get from product service
+      "productName": "string",
       "quantity": 0,
       "price": 0
     }
