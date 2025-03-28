@@ -42,10 +42,15 @@ public class OrdersController : ControllerBase
     [HttpPost]
     [ProducesResponseType(typeof(Guid), 201)]
     [ProducesResponseType(400)]
-    public async Task<IActionResult> CreateOrder(CreateOrderCommand command)
+    public async Task<IActionResult> CreateOrder(CreateOrderRequest request)
     {
         try
         {
+            var command = new CreateOrderCommand(
+                request.CustomerName,
+                request.Items.Select(item =>
+                    new OrderItemDto(Guid.NewGuid(), item.ProductId, item.ProductName, item.Quantity, item.Price))
+                .ToList());
             var orderId = await _mediator.Send(command);
             return CreatedAtAction(nameof(GetOrderById), new { orderId }, new { OrderId = orderId });
         }

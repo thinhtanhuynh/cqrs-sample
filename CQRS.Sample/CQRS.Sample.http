@@ -4,10 +4,9 @@ POST {{CQRS.Sample_HostAddress}}/api/orders/
 Accept: application/json
 
 {
-  "customerName": "Thinh",
+  "customerName": "Quang",
   "items": [
     {
-      "orderId": "123e4567-e89b-12d3-a456-426614174000",
       "productId": "223e4567-e89b-12d3-a456-426614174001",
       "productName": "Cup",
       "quantity": 2,
