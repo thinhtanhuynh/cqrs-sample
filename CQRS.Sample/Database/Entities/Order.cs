@@ -1,4 +1,4 @@
-namespace CQRS.Sample.Models;
+namespace CQRS.Sample.Database.Entities;
 public record Order
 {
     public Guid Id { get; init; }

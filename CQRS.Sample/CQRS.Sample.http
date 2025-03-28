@@ -1,6 +1,6 @@
-@CQRS.Sample_HostAddress = http://localhost:5000
+@CQRS_Sample_HostAddress = http://localhost:5000
 
-POST {{CQRS.Sample_HostAddress}}/api/orders/
+POST {{CQRS_Sample_HostAddress}}/api/orders/
 Content-Type: application/json
 Accept: application/json
 
@@ -24,7 +24,7 @@ Accept: application/json
 
 ###
 
-GET {{CQRS.Sample_HostAddress}}/api/orders/de770d1e-b815-4a20-82ba-da291e59d5aa
+GET {{CQRS_Sample_HostAddress}}/api/orders/de770d1e-b815-4a20-82ba-da291e59d5aa
 Accept: application/json
 
 ###

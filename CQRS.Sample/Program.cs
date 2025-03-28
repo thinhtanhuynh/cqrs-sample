@@ -1,5 +1,5 @@
 using Scalar.AspNetCore;
-using CQRS.Sample.Data;
+using CQRS.Sample.Database;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -26,8 +26,8 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
-    app.MapScalarApiReference();
+   app.MapOpenApi();
+   app.MapScalarApiReference();
 }
 
 app.UseHttpsRedirection();

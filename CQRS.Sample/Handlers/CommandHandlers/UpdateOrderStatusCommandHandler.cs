@@ -1,5 +1,5 @@
 using CQRS.Sample.Commands;
-using CQRS.Sample.Data;
+using CQRS.Sample.Database;
 using MediatR;
 using CQRS.Sample.Exceptions;
 namespace CQRS.Sample.Handlers.CommandHandlers;

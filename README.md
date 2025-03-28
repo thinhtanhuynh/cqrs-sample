@@ -28,12 +28,12 @@ The project is organized as follows:
 ```
 ├── Controllers             # Contains the API controller
 │   └── OrdersController.cs
-├── Data                    # Contains the database contexts
+├── Database                # Contains the database contexts
+│   ├── Entities            # Contains entities
+│   │   ├── Order.cs
+│   │   └── OrderItem.cs
 │   ├── OrderWriteDbContext.cs # Context for write operations
 │   └── OrderReadDbContext.cs  # Context for read operations
-├── Models                  # Contains the domain models
-│   ├── Order.cs
-│   └── OrderItem.cs
 ├── Commands                # Contains the command definitions
 │   ├── CreateOrderCommand.cs
 │   └── UpdateOrderStatusCommand.cs

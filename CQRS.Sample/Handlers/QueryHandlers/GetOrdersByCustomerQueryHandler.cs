@@ -1,4 +1,4 @@
-using CQRS.Sample.Data;
+using CQRS.Sample.Database;
 using CQRS.Sample.DTOs;
 using CQRS.Sample.Queries;
 using MediatR;

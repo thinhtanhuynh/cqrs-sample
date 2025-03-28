@@ -1,6 +1,6 @@
 using CQRS.Sample.Commands;
-using CQRS.Sample.Data;
-using CQRS.Sample.Models;
+using CQRS.Sample.Database;
+using CQRS.Sample.Database.Entities;
 using MediatR;
 
 namespace CQRS.Sample.Handlers.CommandHandlers;

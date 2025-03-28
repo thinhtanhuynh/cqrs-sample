@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using CQRS.Sample.Models;
+using CQRS.Sample.Database.Entities;
 
-namespace CQRS.Sample.Data;
+namespace CQRS.Sample.Database;
 public class OrderReadDbContext : DbContext
 {
     public OrderReadDbContext(DbContextOptions<OrderReadDbContext> options) : base(options) { }
