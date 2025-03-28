@@ -42,7 +42,7 @@ public class OrdersController : ControllerBase
     [HttpPost]
     [ProducesResponseType(typeof(Guid), 201)]
     [ProducesResponseType(400)]
-    public async Task<IActionResult> CreateOrder(CreateOrderRequest request)
+    public async Task<IActionResult> CreateOrder([FromBody]CreateOrderRequest request)
     {
         try
         {

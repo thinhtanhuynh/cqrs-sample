@@ -1,16 +1,23 @@
 @CQRS.Sample_HostAddress = http://localhost:5000
 
 POST {{CQRS.Sample_HostAddress}}/api/orders/
+Content-Type: application/json
 Accept: application/json
 
 {
-  "customerName": "Quang",
+  "customerName": "Thinh",
   "items": [
     {
       "productId": "223e4567-e89b-12d3-a456-426614174001",
       "productName": "Cup",
-      "quantity": 2,
+      "quantity": 5,
       "price": 1.5
+    },
+    {
+      "productId": "223e4567-e89b-12d3-a456-426614174022",
+      "productName": "Bow",
+      "quantity": 10,
+      "price": 2.5
     }
   ]
 }
